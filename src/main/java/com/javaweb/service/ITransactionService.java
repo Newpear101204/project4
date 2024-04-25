@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ITransactionService {
     List<TransactionEntity> getTransaction (CustomerEntity customerEntity, String code);
-    TransactionEntity getTransactionToUpdate (Long id);
+   // TransactionEntity getTransactionToUpdate (Long id);
     void AddTransaction (TransactionDTO transactionDTO);
 
 }
