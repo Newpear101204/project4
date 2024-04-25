@@ -258,7 +258,7 @@
     function AddOrUpdate (data){
         $.ajax({
             type: "POST",
-            url : "/web/contact",
+            url : "/web/customer/contact",
             data : JSON.stringify(data),
             contentType : "application/json",
             dataType : "JSON",

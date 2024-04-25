@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class NewAPI {
     @Autowired
     private ICustomerService customerService;
-    @PostMapping(value = "web/contact")
+    @PostMapping(value = "web/customer/contact")
     public CustomerDTO add (@RequestBody CustomerDTO customerDTO){
         customerDTO.setStatus("CHUA");
         customerService.AddOrUpdateCustomer(customerDTO);

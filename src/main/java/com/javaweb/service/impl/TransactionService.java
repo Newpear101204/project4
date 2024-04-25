@@ -32,7 +32,7 @@ public class TransactionService implements ITransactionService {
             transactionEntity.setNote(transactionDTO.getTransactionDetail());
         }
         else {
-            transactionEntity = transactionDTOConverter.TransactionDTOconverter(transactionDTO);
+             transactionEntity = transactionDTOConverter.TransactionDTOconverter(transactionDTO);
         }
         transactionRepository.save(transactionEntity);
     }
