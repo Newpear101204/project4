@@ -6,6 +6,7 @@ import com.javaweb.enums.StatusType;
 import com.javaweb.model.dto.CustomerDTO;
 import com.javaweb.model.response.ResponseDTO;
 import com.javaweb.model.response.StaffResponseDTO;
+import com.javaweb.repository.CustomerRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,6 +21,9 @@ public class CustomerDTOConverter{
 
         @Autowired
         private ModelMapper modelMapper;
+
+        @Autowired
+        private CustomerRepository customerRepository;
 
     public ResponseDTO ConverterToResponseDTO (List<UserEntity> staffs , List<UserEntity> staffAssignment){
         List<StaffResponseDTO>  staffResponseDTOS = new ArrayList<>();
@@ -48,9 +52,15 @@ public class CustomerDTOConverter{
     }
     public CustomerEntity ConverterCUstomerDTO(CustomerDTO customerDTO){
         CustomerEntity customerEntity = modelMapper.map(customerDTO,CustomerEntity.class);
-        customerEntity.setFullname(customerDTO.getName());
+        if(customerDTO.getId() != null){
+            CustomerEntity x = customerRepository.findById(customerDTO.getId()).get();
+            customerEntity.setCreatedBy(x.getCreatedBy());
+            customerEntity.setCreatedDate(x.getCreatedDate());
+            customerEntity.setUsers(x.getUsers());
+        }
         Map<String,String> status = StatusType.statusType();
         String statusType = status.get(customerDTO.getStatus());
+        customerEntity.setFullname(customerDTO.getName());
         customerEntity.setStatus(statusType);
         customerEntity.setIsactive(1);
         return customerEntity;

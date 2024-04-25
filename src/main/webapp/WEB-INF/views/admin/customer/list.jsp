@@ -144,8 +144,8 @@
                         <display:column  property="customerPhone" title="Di động "/>
                         <display:column  property="email" title="Email"/>
                         <display:column  property="demand" title="Nhu cầu "/>
-                        <display:column  property="modifiedBy" title="Người tạo "/>
-                        <display:column  property="modifiedDate" title="Ngày "/>
+                        <display:column  property="createdBy" title="Người tạo "/>
+                        <display:column  property="createdDate" title="Ngày "/>
                         <display:column  property="status" title="Trạng thái "/>
                         <display:column title="Thao tác ">
                             <div class="hidden-sm hidden-xs btn-group">

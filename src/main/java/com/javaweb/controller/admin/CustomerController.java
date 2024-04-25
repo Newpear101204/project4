@@ -39,8 +39,6 @@ public class CustomerController {
     @Autowired
     private TransactionService transactionService;
 
-
-
     @RequestMapping(value = "/admin/customer-list", method = RequestMethod.GET)
     public ModelAndView customerlist (@ModelAttribute CustomerSearchRequest customerSearchRequest, HttpServletRequest request){
         ModelAndView mav = new ModelAndView("admin/customer/list");
@@ -65,7 +63,6 @@ public class CustomerController {
         mav.addObject("statusType", StatusType.statusType());
         return mav;
     }
-
 
     @RequestMapping(value = "/admin/customer-edit-{id}", method = RequestMethod.GET)
     public ModelAndView customerEdit  (@PathVariable Long id , HttpServletRequest request){

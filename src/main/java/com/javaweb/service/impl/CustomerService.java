@@ -1,15 +1,11 @@
 package com.javaweb.service.impl;
 
-import com.javaweb.converter.BuildingDTOConverter;
 import com.javaweb.converter.CustomerDTOConverter;
 import com.javaweb.converter.TransactionDTOConverter;
-import com.javaweb.entity.BuildingEntity;
 import com.javaweb.entity.CustomerEntity;
-import com.javaweb.entity.TransactionEntity;
 import com.javaweb.entity.UserEntity;
 import com.javaweb.model.dto.AssignmentCustomerDTO;
 import com.javaweb.model.dto.CustomerDTO;
-import com.javaweb.model.dto.TransactionDTO;
 import com.javaweb.model.request.CustomerSearchRequest;
 import com.javaweb.model.response.ResponseDTO;
 import com.javaweb.repository.CustomerRepository;
@@ -18,7 +14,6 @@ import com.javaweb.service.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,8 +31,7 @@ public class CustomerService  implements ICustomerService {
     @Autowired
     private CustomerDTOConverter customerDTOConverter;
 
-    @Autowired
-    private TransactionDTOConverter transactionDTOConverter;
+
 
     @Override
     public ResponseDTO listStaffs(Long customerId) {
@@ -62,8 +56,8 @@ public class CustomerService  implements ICustomerService {
 
     @Override
     public void AddOrUpdateCustomer(CustomerDTO customerDTO) {
-        CustomerEntity x = customerDTOConverter.ConverterCUstomerDTO(customerDTO);
-        customerRepository.save(x);
+        CustomerEntity customerEntity = customerDTOConverter.ConverterCUstomerDTO(customerDTO);
+        customerRepository.save(customerEntity);
     }
 
     @Override
