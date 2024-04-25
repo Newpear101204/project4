@@ -1,17 +1,14 @@
 package com.javaweb.api.admin;
 
-import com.javaweb.entity.TransactionEntity;
-import com.javaweb.model.dto.AssignmentBuildingDTO;
 import com.javaweb.model.dto.AssignmentCustomerDTO;
 import com.javaweb.model.dto.CustomerDTO;
 import com.javaweb.model.dto.TransactionDTO;
 import com.javaweb.model.response.ResponseDTO;
-import com.javaweb.service.IBuildingService;
 import com.javaweb.service.ICustomerService;
 import com.javaweb.service.ITransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+
 
 import java.util.List;
 import java.util.Map;

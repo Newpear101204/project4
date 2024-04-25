@@ -63,8 +63,6 @@ public class CustomerController {
         ModelAndView mav = new ModelAndView("admin/customer/edit");
         mav.addObject("customerEdit",customerDTO);
         mav.addObject("statusType", StatusType.statusType());
-
-
         return mav;
     }
 

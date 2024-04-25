@@ -17,23 +17,16 @@ public class TransactionService implements ITransactionService {
 
     @Autowired
     private TransactionDTOConverter transactionDTOConverter;
+
     @Override
     public List<TransactionEntity> getTransaction(CustomerEntity customerEntity, String code) {
         List<TransactionEntity> list = transactionRepository.findByCustomersAndCode(customerEntity,code);
         return list;
     }
 
-
     @Override
     public void AddTransaction(TransactionDTO transactionDTO) {
-        TransactionEntity transactionEntity ;
-        if(transactionDTO.getId() != null){
-            transactionEntity = transactionRepository.findById(transactionDTO.getId()).get();
-            transactionEntity.setNote(transactionDTO.getTransactionDetail());
-        }
-        else {
-             transactionEntity = transactionDTOConverter.TransactionDTOconverter(transactionDTO);
-        }
+        TransactionEntity transactionEntity = transactionDTOConverter.TransactionDTOconverter(transactionDTO);
         transactionRepository.save(transactionEntity);
     }
 

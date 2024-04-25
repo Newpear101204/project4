@@ -174,7 +174,7 @@
                                         <td>
                                             <div class ="hidden-sm hidden-xs btn-group">
                                                 <button class ="btn btn-xs btn-danger" data-toggle="tooltip" title="Sua thong tin giao dich"
-                                                        onclick="UpdateTransaction(${items.id})">
+                                                        onclick="UpdateTransaction(${items.id},'${item.key}', ${customerEdit.id},'${items.note}')">
                                                     <i class = "ace-icon fa fa-trash-o bigger-120"></i>
 
                                                 </button>
@@ -225,7 +225,7 @@
                                         <td>
                                             <div class ="hidden-sm hidden-xs btn-group">
                                                 <button class ="btn btn-xs btn-danger" data-toggle="tooltip" title="Sua thong tin giao dich"
-                                                        onclick="UpdateTransaction(${items.id})">
+                                                        onclick="UpdateTransaction(${items.id},'${item.key}', ${customerEdit.id},'${items.note}')">
                                                     <i class = "ace-icon fa fa-trash-o bigger-120"></i>
 
                                                 </button>
@@ -267,7 +267,7 @@
                         <label for ="transactionDetail" class ="col-xs-12 col-sm-3 control-label no-padding-right"> Chi tiet giao dịch </label>
                         <div class ="col-xs-12 col-sm-9">
                             <span class = "block input-icon input-icon-right">
-                                <input type="text" id ="transactionDetail" class ="width-100">
+                                <input type="text" id ="transactionDetail" class ="width-100" >
                             </span>
                         </div>
                     </div>
@@ -303,9 +303,16 @@
         $('#code').val(code);
     }
 
-    function UpdateTransaction (id){
+    function UpdateTransaction (id,code,customerId,note){
         $('#transactionTypeModal').modal();
         $('#ids').val(id);
+        $('#customerId').val(customerId);
+        $('#code').val(code);
+        // Lấy thẻ input bằng id
+        var myInput = document.getElementById("transactionDetail");
+
+        // Đặt giá trị mặc định cho ô input
+        myInput.value = note ;
     }
 
     $('#btnAddOrUpdateTransaction').click(function (e) {
