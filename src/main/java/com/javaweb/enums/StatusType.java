@@ -4,9 +4,9 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public enum StatusType {
-    DANG("Đang xử lí"),
-    DA("Đã xử lí"),
-    CHUA("Chưa xử lí");
+    DANG_XU_LI("Đang xử lí"),
+    DA_XU_LI("Đã xử lí"),
+    CHUA_XU_LI("Chưa xử lí");
 
     private final String Status;
 

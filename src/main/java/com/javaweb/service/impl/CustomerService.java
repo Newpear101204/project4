@@ -7,6 +7,7 @@ import com.javaweb.entity.UserEntity;
 import com.javaweb.model.dto.AssignmentCustomerDTO;
 import com.javaweb.model.dto.CustomerDTO;
 import com.javaweb.model.request.CustomerSearchRequest;
+import com.javaweb.model.response.CustomerSearchResponse;
 import com.javaweb.model.response.ResponseDTO;
 import com.javaweb.repository.CustomerRepository;
 import com.javaweb.repository.UserRepository;
@@ -43,11 +44,11 @@ public class CustomerService  implements ICustomerService {
     }
 
     @Override
-    public List<CustomerDTO> listCustomer(CustomerSearchRequest customerSearchRequest) {
+    public List<CustomerSearchResponse> listCustomer(CustomerSearchRequest customerSearchRequest) {
         List<CustomerEntity> customerEntityList = customerRepository.listCustomer(customerSearchRequest);
-        List<CustomerDTO> customerDTOList = new ArrayList<>();
+        List<CustomerSearchResponse> customerDTOList = new ArrayList<>();
         for(CustomerEntity it : customerEntityList){
-            CustomerDTO x = customerDTOConverter.ConverterCustomerEntity(it);
+            CustomerSearchResponse x = customerDTOConverter.ConverterCustomerEntity(it);
             customerDTOList.add(x);
 
         }

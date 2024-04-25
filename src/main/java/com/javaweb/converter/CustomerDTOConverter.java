@@ -4,6 +4,7 @@ import com.javaweb.entity.CustomerEntity;
 import com.javaweb.entity.UserEntity;
 import com.javaweb.enums.StatusType;
 import com.javaweb.model.dto.CustomerDTO;
+import com.javaweb.model.response.CustomerSearchResponse;
 import com.javaweb.model.response.ResponseDTO;
 import com.javaweb.model.response.StaffResponseDTO;
 import com.javaweb.repository.CustomerRepository;
@@ -45,11 +46,22 @@ public class CustomerDTOConverter{
         return a;
     }
 
-    public CustomerDTO ConverterCustomerEntity (CustomerEntity customerEntity){
-        CustomerDTO customerDTO = modelMapper.map(customerEntity,CustomerDTO.class);
+    public CustomerSearchResponse ConverterCustomerEntity (CustomerEntity customerEntity){
+        CustomerSearchResponse customerDTO = modelMapper.map(customerEntity,CustomerSearchResponse.class);
         customerDTO.setName(customerEntity.getFullname());
+        Map<String,String> status = StatusType.statusType();
+        if(customerEntity.getStatus()!=null)customerDTO.setStatus(status.get(customerEntity.getStatus()));
         return customerDTO;
     }
+
+    public CustomerDTO ConverterCustomerEntityToDTO (CustomerEntity customerEntity){
+        CustomerDTO customerDTO = modelMapper.map(customerEntity,CustomerDTO.class);
+        customerDTO.setName(customerEntity.getFullname());
+        customerDTO.setStatus(customerEntity.getStatus());
+        return customerDTO;
+    }
+
+
     public CustomerEntity ConverterCUstomerDTO(CustomerDTO customerDTO){
         CustomerEntity customerEntity = modelMapper.map(customerDTO,CustomerEntity.class);
         if(customerDTO.getId() != null){
@@ -58,15 +70,12 @@ public class CustomerDTOConverter{
             customerEntity.setCreatedDate(x.getCreatedDate());
             customerEntity.setUsers(x.getUsers());
         }
-        Map<String,String> status = StatusType.statusType();
-        String statusType = status.get(customerDTO.getStatus());
         customerEntity.setFullname(customerDTO.getName());
-        customerEntity.setStatus(statusType);
         customerEntity.setIsactive(1);
         return customerEntity;
     }
 
-    public String Status (String s){
+    /*public String Status (String s){
         Map<String,String> listStatus = StatusType.statusType();
         for (Map.Entry<String,String > entry : listStatus.entrySet()) {
             String value = entry.getValue();
@@ -76,5 +85,5 @@ public class CustomerDTOConverter{
         }
         return null;
 
-    }
+    }*/
 }

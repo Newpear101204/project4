@@ -106,4 +106,5 @@ public class BuildingSearchResponse extends AbstractDTO {
 	public void setManagerPhone(String managerPhone) {
 		this.managerPhone = managerPhone;
 	}
+
 }

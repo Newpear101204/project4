@@ -7,6 +7,7 @@ import com.javaweb.enums.StatusType;
 import com.javaweb.enums.TransactionType;
 import com.javaweb.model.dto.CustomerDTO;
 import com.javaweb.model.request.CustomerSearchRequest;
+import com.javaweb.model.response.CustomerSearchResponse;
 import com.javaweb.repository.CustomerRepository;
 import com.javaweb.security.utils.SecurityUtils;
 import com.javaweb.service.ICustomerService;
@@ -47,8 +48,8 @@ public class CustomerController {
         if(SecurityUtils.getAuthorities().contains("ROLE_STAFF")){
             customerSearchRequest.setStaffId(SecurityUtils.getPrincipal().getId());
         }
-        List<CustomerDTO> customerList = customerService.listCustomer(customerSearchRequest);
-        CustomerDTO a = new CustomerDTO();
+        List<CustomerSearchResponse> customerList = customerService.listCustomer(customerSearchRequest);
+        CustomerSearchResponse a = new CustomerSearchResponse();
         a.setListResult(customerList);
         a.setTotalItems(customerList.size());
         mav.addObject("customerList",a);
@@ -68,8 +69,7 @@ public class CustomerController {
     public ModelAndView customerEdit  (@PathVariable Long id , HttpServletRequest request){
         ModelAndView mav = new ModelAndView("admin/customer/edit");
         CustomerEntity x = customerRepository.findById(id).get();
-        CustomerDTO customerDTO = customerDTOConverter.ConverterCustomerEntity(x);
-        customerDTO.setStatus(customerDTOConverter.Status(customerDTO.getStatus()));
+        CustomerDTO customerDTO = customerDTOConverter.ConverterCustomerEntityToDTO(x);
         mav.addObject("customerEdit",customerDTO);
         mav.addObject("transactionType", TransactionType.transactionType());
         mav.addObject("statusType", StatusType.statusType());
