@@ -13,7 +13,7 @@ public class NewAPI {
     private ICustomerService customerService;
     @PostMapping(value = "web/customer/contact")
     public CustomerDTO add (@RequestBody CustomerDTO customerDTO){
-        customerDTO.setStatus("CHUA");
+        customerDTO.setStatus("CHUA_XU_LI");
         customerService.AddOrUpdateCustomer(customerDTO);
         return customerDTO;
     }

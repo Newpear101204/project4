@@ -46,13 +46,13 @@ public class CustomerService  implements ICustomerService {
     @Override
     public List<CustomerSearchResponse> listCustomer(CustomerSearchRequest customerSearchRequest) {
         List<CustomerEntity> customerEntityList = customerRepository.listCustomer(customerSearchRequest);
-        List<CustomerSearchResponse> customerDTOList = new ArrayList<>();
+        List<CustomerSearchResponse> responseList = new ArrayList<>();
         for(CustomerEntity it : customerEntityList){
             CustomerSearchResponse x = customerDTOConverter.ConverterCustomerEntity(it);
-            customerDTOList.add(x);
+            responseList.add(x);
 
         }
-        return customerDTOList;
+        return responseList;
     }
 
     @Override

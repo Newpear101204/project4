@@ -47,11 +47,11 @@ public class CustomerDTOConverter{
     }
 
     public CustomerSearchResponse ConverterCustomerEntity (CustomerEntity customerEntity){
-        CustomerSearchResponse customerDTO = modelMapper.map(customerEntity,CustomerSearchResponse.class);
-        customerDTO.setName(customerEntity.getFullname());
+        CustomerSearchResponse customerSearchResponse = modelMapper.map(customerEntity,CustomerSearchResponse.class);
+        customerSearchResponse.setName(customerEntity.getFullname());
         Map<String,String> status = StatusType.statusType();
-        if(customerEntity.getStatus()!=null)customerDTO.setStatus(status.get(customerEntity.getStatus()));
-        return customerDTO;
+        if(customerEntity.getStatus()!=null)customerSearchResponse.setStatus(status.get(customerEntity.getStatus()));
+        return customerSearchResponse;
     }
 
     public CustomerDTO ConverterCustomerEntityToDTO (CustomerEntity customerEntity){
