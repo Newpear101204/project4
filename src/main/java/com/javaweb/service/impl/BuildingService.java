@@ -99,6 +99,7 @@ import java.util.List;
                     file.delete();
                 }
             }
+            // giải mã một chuỗi dữ liệu mã hóa Base64 thành dạng mảng byte
             byte[] bytes = Base64.decodeBase64(buildingDTO.getImageBase64().getBytes());
             uploadFileUtils.writeOrUpdate(path, bytes);
             buildingEntity.setImage(path);

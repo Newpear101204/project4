@@ -2,6 +2,7 @@ package com.javaweb.api.admin;
 
 import com.javaweb.enums.Districts;
 import com.javaweb.enums.TypeCode;
+import com.javaweb.exception.DistrictException;
 import com.javaweb.model.dto.AssignmentBuildingDTO;
 import com.javaweb.model.dto.BuildingDTO;
 import com.javaweb.model.response.BuildingSearchResponse;
@@ -26,8 +27,15 @@ public class BuildingAPI {
 
     @PostMapping
     public BuildingDTO AddOrUpdateBuilding(@RequestBody BuildingDTO buildingDTO){
+        CheckDistrict(buildingDTO);
         buildingService.UpdateOrAdd(buildingDTO);
         return buildingDTO;
+    }
+    public void CheckDistrict(BuildingDTO buildingDTO){
+        if(buildingDTO.getDistrict() == null || buildingDTO.getDistrict().equalsIgnoreCase("")){
+            throw new DistrictException("Chưa khai báo quận của tòa nhà ");
+        }
+
     }
 
     @DeleteMapping("/{ids}")
